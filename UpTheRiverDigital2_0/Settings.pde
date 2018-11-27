@@ -5,7 +5,7 @@ boolean enterPressed = false;
 boolean movePanels = false;
 
 ////////DEV-MODE////////
-boolean devMode = true;
+boolean devMode = false;
 
 //Panels
 final int MAX_PANELS = 11;
@@ -15,7 +15,9 @@ int sandBankIndex = 0;
 int waveIndex = 5;
 PImage water;
 PImage wave;
-
+PImage sandBank;
+PImage groundLeft;
+PImage groundRight;
 
 
 //Player(s)
@@ -30,8 +32,11 @@ String[] playerColor = {"red", "green", "blue", "yellow"};
 
 void mainSetup() {  
   //Panles
-  water = loadImage("sprites/water.png");
-  wave = loadImage("sprites/wave.png");
+  water = loadImage("sprites/iceWaterDeepStars.png");
+  wave = loadImage("sprites/igloo.png");
+  sandBank = loadImage("sprites/wakBig.png");
+  groundLeft = loadImage("sprites/snowGroundLeft.png");
+  groundRight = loadImage("sprites/snowGroundRight.png");
   createPanels();
 
   //Player

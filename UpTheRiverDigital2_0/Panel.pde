@@ -1,15 +1,17 @@
 class Panel {
   PVector position, size;
-  PImage water;
+  PImage water, groundL, groundR;
   float shade;
   String name;
 
-  Panel(float x, float y, float w, float h, PImage wat) {
+  Panel(float x, float y, float w, float h, PImage wat, PImage left, PImage right) {
     position = new PVector(x, y);
     size = new PVector(w, h);
     shade = random(0, 256);
     water = wat;
     name = "Default";
+    groundL = left;
+    groundR = right;
   }
 
   void update() {
@@ -31,6 +33,8 @@ class Panel {
       image(water, position.x, position.y, size.y, size.y);
       position.x += size.y;
     }
+    image(groundLeft, 0, position.y, size.y, size.y);
+    image(groundRight, width - size.y, position.y,size.y, size.y);
   }
 }
 
@@ -44,24 +48,24 @@ void createPanels() {
   y = 0;
 
   for (int iPanel = MAX_PANELS; iPanel > 0; iPanel--) {
-    Panel pnl = new Panel(x, y, w, h, water);
+    Panel pnl = new Panel(x, y, w, h, water, groundLeft, groundRight);
     if (iPanel != 11) {
       pnl = panels.get(MAX_PANELS - iPanel - 1);
     }
 
     if (iPanel == 1) {
       // Special Harbor Panel
-      panels.add(new Harbor(x, pnl.position.y - h, w, h, water));
+      panels.add(new Harbor(x, pnl.position.y - h, w, h, water, groundLeft, groundRight));
     } else {      
       if (iPanel == 6) {    
         // Special wave panel
-        panels.add(new Wave(x, pnl.position.y - h, w, h, water, wave));
+        panels.add(new Wave(x, pnl.position.y - h, w, h, water, wave, groundLeft, groundRight));
       } else if (iPanel == 11) {   
         // Special SandBank panel
-        panels.add(new SandBank(x, height - h, w, h, water));
+        panels.add(new SandBank(x, height - h, w, h, water, sandBank, groundLeft, groundRight));
       } else {    
         //Normal Panels
-        panels.add(new Panel(x, pnl.position.y - h, w, h, water));
+        panels.add(new Panel(x, pnl.position.y - h, w, h, water, groundLeft, groundRight));
       }
     }
   }

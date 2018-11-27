@@ -1,6 +1,6 @@
 class Harbor extends Panel{
-    Harbor(float x, float y, float w, float h, PImage harbor){
-       super(x, y, w, h, harbor);
+    Harbor(float x, float y, float w, float h, PImage harbor, PImage left, PImage right){
+       super(x, y, w, h, harbor, left, right);
        name = "Harbor";
     }
     

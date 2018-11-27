@@ -1,8 +1,8 @@
 class Wave extends Panel {
   PImage wave;
 
-  Wave(float x, float y, float w, float h, PImage wat, PImage wav) {
-    super(x, y, w, h, wat);
+  Wave(float x, float y, float w, float h, PImage wat, PImage wav, PImage left, PImage right) {
+    super(x, y, w, h, wat, left, right);
     wave = wav;
     name = "Wave";
   }
@@ -26,6 +26,8 @@ class Wave extends Panel {
       image(wave, position.x, position.y, size.y, size.y);
       position.x += size.y;
     }
+    image(groundLeft, 0, position.y, size.y, size.y);
+    image(groundRight, width - size.y, position.y,size.y, size.y);
     textAlign(CENTER, CENTER);
     fill(0);
     text("Wave", width/2, position.y + size.y/2);
